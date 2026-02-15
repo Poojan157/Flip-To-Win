@@ -1,57 +1,230 @@
-:root{
-  /* Declaring the Font-Sizes */
-  --font-size-xs : 1.5rem;
-  --font-size-sm : 1rem;
-  --font-size-md : 2rem;
-  --font-size-lg : 4rem;
-  --font-size-xl : 6rem;
-  --font-size-2xl : 8rem;
+:root {
+  /* TypoGraphy and Font-Sizes */
+  --step--2: clamp(1.0417rem, 0.7362rem + 1.5275vw, 1.92rem);
+  --step--1: clamp(1.25rem, 0.85rem + 2vw, 2.4rem);
+  --step-0: clamp(1.5rem, 0.9783rem + 2.6087vw, 3rem);
+  --step-1: clamp(1.8rem, 1.1217rem + 3.3913vw, 3.75rem);
+  --step-2: clamp(2.16rem, 1.2809rem + 4.3957vw, 4.6875rem);
+  --step-3: clamp(2.592rem, 1.4555rem + 5.6824vw, 5.8594rem);
+  --step-4: clamp(3.1104rem, 1.6447rem + 7.3284vw, 7.3242rem);
+  --step-5: clamp(3.7325rem, 1.8463rem + 9.4309vw, 9.1553rem);
 
-  /* Declaring Spacing like Margin/Padding-Sizes */
-  --spacing-xs : 0.5rem;
-  --spacing-sm : 1rem;
-  --spacing-md : 1.5rem;
-  --spacing-lg : 2rem;
-  --spacing-xl : 2.5rem;
-  --spacing-2xl : 3rem;
+  /* Spacing */
+  --space-3xs: clamp(0.375rem, 0.2446rem + 0.6522vw, 0.75rem);
+  --space-2xs: clamp(0.75rem, 0.4891rem + 1.3043vw, 1.5rem);
+  --space-xs: clamp(1.125rem, 0.7337rem + 1.9565vw, 2.25rem);
+  --space-s: clamp(1.5rem, 0.9783rem + 2.6087vw, 3rem);
+  --space-m: clamp(2.25rem, 1.4674rem + 3.913vw, 4.5rem);
+  --space-l: clamp(3rem, 1.9565rem + 5.2174vw, 6rem);
+  --space-xl: clamp(4.5rem, 2.9348rem + 7.8261vw, 9rem);
+  --space-2xl: clamp(6rem, 3.913rem + 10.4348vw, 12rem);
+  --space-3xl: clamp(9rem, 5.8696rem + 15.6522vw, 18rem);
+
+  /* One-up pairs */
+  --space-3xs-2xs: clamp(0.375rem, -0.0163rem + 1.9565vw, 1.5rem);
+  --space-2xs-xs: clamp(0.75rem, 0.2283rem + 2.6087vw, 2.25rem);
+  --space-xs-s: clamp(1.125rem, 0.4728rem + 3.2609vw, 3rem);
+  --space-s-m: clamp(1.5rem, 0.4565rem + 5.2174vw, 4.5rem);
+  --space-m-l: clamp(2.25rem, 0.9457rem + 6.5217vw, 6rem);
+  --space-l-xl: clamp(3rem, 0.913rem + 10.4348vw, 9rem);
+  --space-xl-2xl: clamp(4.5rem, 1.8913rem + 13.0435vw, 12rem);
+  --space-2xl-3xl: clamp(6rem, 1.8261rem + 20.8696vw, 18rem);
+
+  /* Custom pairs */
+  --space-s-l: clamp(1.5rem, -0.0652rem + 7.8261vw, 6rem);
 }
 
 .header{
-  /* margin-top : var(--spacing-md); */
-  font-size : var(--font-size-lg);
-  font-family :'Courier New', Courier, monospace;
   text-align: center;
-  margin-bottom : var(--spacing-md);
+  font-size: var(--step-1);
+  margin-bottom : var(--space-xs-s);
+  user-select: none;
 }
 
-.grid{
-  width : 100%;
-  display : grid;
-  grid-template-columns: 30% 40% 30%;
-  gap : 10px;
-  height : 750px;
+.Player{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap : 1rem;
+  margin : 1rem;
+  font-size : var(--step--1);
+  margin-bottom : var(--space-2xs);
 }
 
-.player-container{
-  display : flex;
+.players-div{
+  text-align: center;
+  border : 2px solid black;
+  line-height: 1.5;
+  border-radius: 0.5rem;
+  user-select: none;
+} 
+
+.is-your-turn{
+  border : 2px solid brown;
+  background-color: aliceblue;
+}
+
+
+.game-grid{
+  display: flex;
   justify-content: center;
   align-items: center;
+  padding-left : var(--space-2xs);
+  padding-right: var(--space-2xs);
 }
 
-.player{
-  font-size : var(--font-size-md);
-  border : 0.2rem solid black;
-  border-radius: 0.5rem;
-  padding : var(--spacing-sm);
-  background-color: pink;
-}
-
-
-.card-grid-container{
+.grid-container{
   display: grid;
   grid-template-columns: repeat(4,1fr);
-  grid-template-rows: repeat((4,1fr));
-  font-size : var(--font-size-md);
-  gap : var(--spacing-xs);
+  border : 2px solid black;
+  align-items: center;
+  gap : var(--space-3xs);
+  padding : var(--space-3xs);
+  margin-bottom : var(--space-3xs);
+}
+
+.card{
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  perspective: 2000px;
+
+  border-radius: 0.5rem;
+  border : 2px solid rgb(51, 98, 49);
+
+  height : 120px;
+  width : 120px;
+  user-select: none;
+}
+
+.card-front,
+.card-back{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backface-visibility: hidden;
+  height : 100%;
+  width: 100%;
+  border-radius: 0.2rem;
+  border : 2px solid rgb(36, 107, 33);
+  font-size : var(--step-2);
+}
+
+.card-back{
+  /* background-color: rgb(95, 245, 90); */
+  background-color: #774DD1;
+}
+
+.card-front{
+  transform: rotateY(180deg);
+}
+
+.card-flipped{
+  transform: rotateY(180deg);
+}
+
+.card-found{
+  opacity: 0.4;
+  background-color: white;
+}
+
+.disable{
+  pointer-events: none;
+}
+
+/* Mobile default (no media query) */
+
+@media (min-width: 320px) { /* mobile */
+  .card{
+    height: 60px;
+    width: 60px;
+  }
+}
+
+@media (min-width: 480px) { /* small tablets */
+  .card{
+    height: 80px;
+    width: 80px;
+  }
+}
+
+@media (min-width: 768px) { /* tablets */ 
+  .card{
+    height: 100px;
+    width: 100px;
+  }
+}
+
+@media (min-width: 1024px) { /* laptops */ 
+  .card{
+    height: 120px;
+    width: 120px;
+  }
+}
+
+@media (min-width: 1280px) { /* desktop */ 
+  .card{
+    height: 140px;
+    width: 140px;
+  }
+}
+
+
+.modal{
+  position: fixed;
+  top: 0rem;
+  left: 0rem;
+  width: 98vw;
+  height: 98vh;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.modal > div{
+  background: linear-gradient(135deg, #FFFFFF, #FFF9E6);
+  padding: var(--space-m);
+  border-radius: 1rem;
+  border: 3px solid var(--holi-pink);
+  box-shadow: 0 10px 40px rgba(255, 0, 110, 0.4);
+  text-align: center;
+  font-size: var(--step-0);
+  font-weight: bold;
+  white-space: pre-line;
+  margin : 8px;
+}
+
+
+.modal button{
+  margin-top: var(--space-s);
+  padding: var(--space-3xs) var(--space-s);
+  font-size: var(--step--1);
+  font-weight: bold;
+  background: linear-gradient(135deg, var(--holi-orange), var(--holi-yellow));
+  border: 2px solid orange;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.modal button:hover{
+  background-color: aqua;
+}
+
+.btn-container{
+  display: flex;
+  justify-content: center;
+}
+
+.reset{
+  background-color: pink;
+  font-size : var(--step--2);
+  line-height : 1.3;
+  font-weight: bold;
+  border : 2px solid black;
+  border-radius : 0.5rem;
+  padding : calc(var(--space-3xs)/2);
   user-select: none;
 }
