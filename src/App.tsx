@@ -1,5 +1,5 @@
 import styles from './App.module.css';
-import { useEffect, useState, type TransitionEventHandler } from 'react';
+import { useState, type TransitionEventHandler } from 'react';
 
 type symbols = "🌸" | "🐉" | "🚀" | "🎨" | "🍩" | "🏝️" | "🦋" | "🎁";
 
@@ -29,7 +29,7 @@ function fisher_yates() : Card[]{
   
   // fisher-yates algorithm
   for(let i = temp_cards.length-1;i>0;i--){
-    let randomIndex : number = Math.floor(Math.random()*(i+1));
+    const randomIndex : number = Math.floor(Math.random()*(i+1));
     [temp_cards[randomIndex],temp_cards[i]] = [temp_cards[i],temp_cards[randomIndex]];
   }
 
@@ -39,8 +39,8 @@ function fisher_yates() : Card[]{
 
 const App = ()=>{
   // Declaring Players names
-  const [Player1, setPlayer1] = useState<string>('Player1');
-  const [Player2, setPlayer2] = useState<string>("Player2");
+  const [Player1] = useState<string>('Player1');
+  const [Player2] = useState<string>("Player2");
 
   // Declaring the Scores of both the players
   const [score1, setScore1] = useState<number>(0);
@@ -205,7 +205,7 @@ const App = ()=>{
           <button onClick={()=>{return resetGame();}}>New Game!</button>
         </div>
       </div>
-    }
+    } 
   </div>
 }
 
